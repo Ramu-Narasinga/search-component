@@ -20,7 +20,7 @@ exports.findAll = (req, res) => {
 };
 
 // API accepts search value from req.query.value
-// checks if a search value is substring in name, address, pincode
+// checks if a search value is substring in id, name, address, pincode
 exports.find = (req, res) => {
     const searchQuery = req.query.value;
     // search in users row fields name || address || pincode
