@@ -27,7 +27,7 @@ const {
   items
 } = db;
 
-users.hasMany(items);
+users.hasMany(items, { foreignKey: 'userId' });
 items.belongsTo(users, { foreignKey: 'userId' });
 
 module.exports = db;
