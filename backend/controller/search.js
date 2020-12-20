@@ -27,6 +27,9 @@ exports.find = (req, res) => {
     Users.findAll({
         where: {
             [Op.or]: {
+                id: {
+                    [Op.like]: '%' + searchQuery + '%'
+                },
                 name: {
                     [Op.like]: '%' + searchQuery + '%'
                 },

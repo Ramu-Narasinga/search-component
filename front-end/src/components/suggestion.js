@@ -11,7 +11,7 @@ const Suggestion = ({type, data, search}) => {
                 type == 'user' && <SuggesionUCard user={data} search={search} cardType="user" />
             }
             {
-                type == 'item' && <SuggesionUCard user={data.user} search={search} cardType="item" />
+                type == 'item' && <SuggesionUCard user={data.user} search={search} cardType="item" data={data} />
             }
         </div>
     )

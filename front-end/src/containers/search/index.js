@@ -10,12 +10,14 @@ import {
 } from "../../utils/common";
 
 import "./index.css";
+import { Redirect } from "react-router-dom";
 
 class Search extends Component {
 
     state={
         search: "",
-        foundUsers: {}
+        foundUsers: {},
+        toSearchList: false
     }
 
     handleChange = (e) => {
@@ -42,19 +44,40 @@ class Search extends Component {
         registerNavHandlers();
     }
 
+    toSearchListCB = () => {
+        debugger
+        const {
+            foundUsers
+        } = this.state;
+        localStorage.setItem('users', JSON.stringify(foundUsers.users));
+        localStorage.setItem('items', JSON.stringify(foundUsers.items));
+        this.setState({
+            toSearchList: true
+        })
+    }
+
     render() {
         const {
             search,
-            foundUsers
+            foundUsers,
+            toSearchList
         } = this.state;
+
+        if (toSearchList) {
+            return <Redirect to="/results" />
+        }
+
         return(
             <div className="search-container">
                 <h1 className="title">Simple Search Component Built Using ReactJs</h1>
                 <div className="search-br">
-                    <input type="text" id="search" className="search-inp"
-                        name="search" placeholder="&#128269;   Search users by Id, name, address, items" 
-                        value={search} onChange={this.handleChange}
-                    />
+                    <div className="sc">
+                        <input type="text" id="search" className="search-inp"
+                            name="search" placeholder="&#128269;   Search users by Id, name, address, items" 
+                            value={search} onChange={this.handleChange}
+                        />
+                        <span id="vr" onClick={this.toSearchListCB}>View Results</span>
+                    </div>
                     <SuggestionsList 
                         suggestions={foundUsers}
                         search={search}

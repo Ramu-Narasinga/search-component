@@ -1,10 +1,26 @@
 import React, { Component } from "react";
+import { Redirect } from "react-router-dom"
 
 import { matchedString } from "../utils/common";
 
 import "./suggestion-card.css";
 
 class SuggestionUCard extends Component {
+
+    state = {
+        toUserView: false
+    }
+
+    navToUser = () => {
+        localStorage.setItem('user', JSON.stringify(this.props.user));
+        if (this.props.data) {
+            // item data
+            localStorage.setItem('item', JSON.stringify(this.props.data));
+        }
+        this.setState({
+            toUserView: true
+        })
+    }
 
     render() {
         
@@ -14,8 +30,16 @@ class SuggestionUCard extends Component {
             cardType
         } = this.props;
 
+        const {
+            toUserView
+        } = this.state;
+
+        if (toUserView === true) {
+            return <Redirect to='/user' />
+          }
+
         return (
-            <div className="u-card">
+            <div className="u-card" onClick={this.navToUser}>
                 <div className="uid em">{matchedString(user.id, search)}</div>
                 <div className="uname em">{matchedString(user.name, search)}</div>
                 {

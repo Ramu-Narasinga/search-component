@@ -10,7 +10,7 @@ const SuggestionsList = ({suggestions, search}) => {
         <div className="suggestions-ls">
             {
                 search && suggestions && suggestions.users && suggestions.items && suggestions.users.length == 0 && suggestions.items.length == 0 &&
-                <div className="u-card">No user found</div>
+                <div className="u-card nuf">No user found</div>
             }
             {
                 suggestions && suggestions.users && suggestions.users.length > 0 && 
