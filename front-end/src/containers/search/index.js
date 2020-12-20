@@ -20,13 +20,15 @@ class Search extends Component {
         toSearchList: false
     }
 
+    // handle search input change
+    // if search value exists, make a REST API call to DB,
+    // response from db returns users, items array (based on match in users table column and items table column)
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         });
         if(e.target.value) {
             searchUsers(e.target.value).then(res => {
-                console.log("found data from search api:", res);
                 this.setState({
                     foundUsers: res
                 })
@@ -40,12 +42,15 @@ class Search extends Component {
         }
     }
 
+    // Keyboard navigation handlers are handled via /utils/common.js functions
+    // to make the code READABLE with in the component and keep it clean
+    // basically register the keydown events on componentDidMount
     componentDidMount() {
         registerNavHandlers();
     }
 
+    // redirect to results page when user clicks on enter key with out clicking suggestions
     toSearchListCB = () => {
-        debugger
         const {
             foundUsers
         } = this.state;

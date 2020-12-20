@@ -10,8 +10,11 @@ export function matchedString(string, term) {
     return <span dangerouslySetInnerHTML={createMarkup(string, term)}></span>;
 }
 
-let i = 0;
-
+// params - type and onlyActiveIndex
+// when 'onlyActiveIndex' is true, directly found active card index is returned
+// basically fetches the current active card from suggestions based on 'sugg-active' class name
+// if key is down, foundActiveIndex is incremented;
+// if key is up, foundActiveIndex is decremeneted;
 function getActiveIndex(type, onlyActiveIndex) {
     let suggestCards = document.getElementsByClassName('suggestion');
     let foundActiveIndex = null;
@@ -22,7 +25,7 @@ function getActiveIndex(type, onlyActiveIndex) {
             activeFound = true;
             foundActiveIndex = i;
         } 
-        console.log(document.getElementsByClassName('suggestion')[i].classList.contains('sugg-active'));
+        // console.log(document.getElementsByClassName('suggestion')[i].classList.contains('sugg-active'));
     }
 
     if(!activeFound) {
@@ -40,21 +43,28 @@ function getActiveIndex(type, onlyActiveIndex) {
     return foundActiveIndex;
 }
 
+// sugg-active class name is used to show active effect on suggestions list
+// previouslyt added 'sugg-active' class is removed using index returned from getActiveIndex
 function handleListNav(e) {
     // on keydown
+    // remove i-1 element's sugg-active
+    // set i element's class to sugg-active
     if (e.keyCode == 40) {
         let i = getActiveIndex('down');
         let el = document.getElementsByClassName('suggestion')[i];
-        console.log("i", i, "e KEY DOWN", e, document.getElementsByClassName('suggestion'));
+        // console.log("i", i, "e KEY DOWN", e, document.getElementsByClassName('suggestion'));
         if (i-1 >= 0) {
             document.getElementsByClassName('suggestion')[i-1].classList.remove('sugg-active');
         }
         el.classList.add('sugg-active');    
         el.scrollIntoView();    
-    } else if (e.keyCode == 38) {
+    } else if (e.keyCode == 38) { 
+        // on keyup
+        // remove i+1 element's sugg-active
+        // set i element's class to sugg-active
         let i = getActiveIndex('up');
         let el = document.getElementsByClassName('suggestion')[i];
-        console.log("e. KEY UP", e, document.getElementsByClassName('suggestion'));
+        // console.log("e. KEY UP", e, document.getElementsByClassName('suggestion'));
         document.getElementsByClassName('suggestion')[i+1].classList.remove('sugg-active');
         el.classList.add('sugg-active');
         el.scrollIntoView();
@@ -68,6 +78,8 @@ function handleListNav(e) {
     }
 }
 
+// registered in search,js component
+// keydown event listener is attached 
 export function registerNavHandlers() {
     if(document.getElementsByClassName('suggestions-ls').length > 0) {
         document.getElementsByClassName('suggestions-ls')[0].onmouseenter = function () {

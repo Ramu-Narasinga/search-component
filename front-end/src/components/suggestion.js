@@ -6,7 +6,10 @@ import "./suggestion.css";
 
 const Suggestion = ({type, data, search}) => {
     return (
-        <div className="suggestion" id={data.user ? data.user.id : data.id}>
+        // use id in scrollIntoView func
+        // data.user is found in case of items array,
+        // db returns uers array and items array based on search keyword match
+        <div className="suggestion" id={data.user ? data.user.id : data.id}> 
             {
                 type == 'user' && <SuggesionUCard user={data} search={search} cardType="user" />
             }

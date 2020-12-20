@@ -5,7 +5,6 @@ import Suggestion from "../../components/suggestion";
 import "./index.css";
 
 const SuggestionsList = ({suggestions, search}) => {
-    debugger
     return (
         <div className="suggestions-ls">
             {

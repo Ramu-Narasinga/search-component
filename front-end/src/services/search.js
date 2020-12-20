@@ -16,7 +16,6 @@ export function searchUsers(value) {
             return response.json();
         })
         .then(data => {
-            console.log(data);
             resolve(data);
         })
         .catch(e => {

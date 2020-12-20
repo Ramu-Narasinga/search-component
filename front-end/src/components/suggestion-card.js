@@ -11,6 +11,9 @@ class SuggestionUCard extends Component {
         toUserView: false
     }
 
+    // navigate to user page view
+    // localstorage is used to populate data
+    // to keep things simple, had it been complex, redux store would have been sensible
     navToUser = () => {
         localStorage.setItem('user', JSON.stringify(this.props.user));
         if (this.props.data) {
