@@ -35,7 +35,8 @@ exports.find = (req, res) => {
                     [Op.like]: '%' + searchQuery + '%'
                 }
             }
-        }
+        },
+        include: ["items"]
     })
         .then(data => {
             res.send(data);
