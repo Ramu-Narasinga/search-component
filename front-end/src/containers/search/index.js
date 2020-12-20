@@ -51,6 +51,7 @@ class Search extends Component {
 
     // redirect to results page when user clicks on enter key with out clicking suggestions
     toSearchListCB = () => {
+        debugger
         const {
             foundUsers
         } = this.state;

@@ -28,19 +28,24 @@ function getActiveIndex(type, onlyActiveIndex) {
         // console.log(document.getElementsByClassName('suggestion')[i].classList.contains('sugg-active'));
     }
 
+    // console.log("found activeFound?", activeFound, "onlyActiveIndex", onlyActiveIndex);
     if(!activeFound) {
-        foundActiveIndex = 0;
+        if (!onlyActiveIndex) {
+            // console.log("this is scenario where there is no activeFOund and onlyActiveIndex is false or null");
+            foundActiveIndex = 0;
+        }
     } else {
         if (!onlyActiveIndex) {
             if(type == 'up') {
                 foundActiveIndex = foundActiveIndex - 1 < 0 ? 0 : foundActiveIndex - 1;
+                // console.log("key up and foundActiveIndex", foundActiveIndex);
             } else if (type == 'down') {
                 foundActiveIndex = foundActiveIndex + 1 > suggestCards.length-1 ? suggestCards.length-1 : foundActiveIndex + 1;
             }
         }
     }
-
-    return foundActiveIndex;
+    // console.log("final foundActiveIndex", foundActiveIndex);
+    return foundActiveIndex != null ? foundActiveIndex : -1;
 }
 
 // sugg-active class name is used to show active effect on suggestions list
