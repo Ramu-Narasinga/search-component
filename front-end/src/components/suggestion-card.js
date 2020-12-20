@@ -1,22 +1,34 @@
-import React from "react";
+import React, { Component } from "react";
+
+import { matchedString } from "../utils/common";
 
 import "./suggestion-card.css";
 
-const SuggestionUCard = ({user, search, cardType}) => {
-    return (
-        <div className="u-card">
-            <div className="uid">{user.id}</div>
-            <div className="uname">{user.name}</div>
-            {
-                cardType == 'item' && <div className="uitems">
-                    <ul>
-                        <li>"{search}" found in items</li>
-                    </ul>
-                </div>
-            }
-            <div className="uaddr">{user.address}, {user.pincode}</div>
-        </div>
-        )
+class SuggestionUCard extends Component {
+
+    render() {
+        
+        const {
+            user, 
+            search, 
+            cardType
+        } = this.props;
+
+        return (
+            <div className="u-card">
+                <div className="uid em">{matchedString(user.id, search)}</div>
+                <div className="uname em">{matchedString(user.name, search)}</div>
+                {
+                    cardType == 'item' && <div className="uitems em">
+                        <ul>
+                            <li>"{search}" found in items</li>
+                        </ul>
+                    </div>
+                }
+                <div className="uaddr em">{matchedString(user.address, search)}, {matchedString(user.pincode, search)}</div>
+            </div>
+            )
+    }
 }
 
 export default SuggestionUCard;

@@ -11,3 +11,21 @@
 .uitems ul {
     margin: 2%;
 }
+
+.em {
+    margin: 5px 0;
+}
+
+.uid {
+    font-weight: 600;
+}
+
+.uname {
+    font-style: italic;
+}
+
+span mark {
+    color: rgb(84 146 238);
+    background-color: inherit;
+    font-weight: 600;
+}

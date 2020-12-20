@@ -6,7 +6,7 @@ import "./suggestion.css";
 
 const Suggestion = ({type, data, search}) => {
     return (
-        <div className="suggestion">
+        <div className="suggestion" id={data.user ? data.user.id : data.id}>
             {
                 type == 'user' && <SuggesionUCard user={data} search={search} cardType="user" />
             }

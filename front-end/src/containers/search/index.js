@@ -5,6 +5,9 @@ import SuggestionsList from "../suggestions-list";
 import {
     searchUsers
 } from "../../services/search";
+import {
+    registerNavHandlers
+} from "../../utils/common";
 
 import "./index.css";
 
@@ -19,18 +22,24 @@ class Search extends Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        searchUsers(e.target.value).then(res => {
-            console.log("found data from search api:", res);
-            this.setState({
-                foundUsers: res
-            })
-        });
+        if(e.target.value) {
+            searchUsers(e.target.value).then(res => {
+                console.log("found data from search api:", res);
+                this.setState({
+                    foundUsers: res
+                })
+            });
+        }
 
-        if (e.target.value == '') {
+        if (e.target.value === '') {
             this.setState({
                 foundUsers: {}
             })
         }
+    }
+
+    componentDidMount() {
+        registerNavHandlers();
     }
 
     render() {

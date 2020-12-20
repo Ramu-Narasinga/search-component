@@ -9,6 +9,17 @@
     text-align: left;
 }
 
+.suggestion {
+    border-bottom: 2px solid rgb(243 243 244);;
+    width: 100%;
+    cursor: pointer;
+    padding-top: 4%;
+}
+
+.suggestion:hover, .sugg-active {
+    background: rgb(254 254 220);;
+}
+
 @media only screen and (max-width: 768px) {
     .suggestions-ls {
         width: 50vw;
