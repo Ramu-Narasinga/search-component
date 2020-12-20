@@ -1,0 +1,10 @@
+.suggestion {
+    border-bottom: 2px solid rgb(243 243 244);;
+    width: 100%;
+    cursor: pointer;
+    padding-top: 4%;
+}
+
+.suggestion:hover {
+    background: rgb(254 254 220);;
+}

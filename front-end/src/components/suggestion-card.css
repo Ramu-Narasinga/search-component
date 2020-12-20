@@ -1,0 +1,13 @@
+.u-card {
+    margin: 0 5% 5% 5%;
+}
+
+.uitems {
+    border-top: 2px solid rgb(243 243 244);
+    border-bottom: 2px solid rgb(243 243 244);
+    margin: 2% 0;
+}
+
+.uitems ul {
+    margin: 2%;
+}
